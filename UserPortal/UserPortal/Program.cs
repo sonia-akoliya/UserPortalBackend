@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using UserPortal.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<UserPortalContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UserPortalContext") ?? throw new InvalidOperationException("Connection string 'UserPortalContext' not found.")));
 
 // Add services to the container.
 
